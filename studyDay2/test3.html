@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test2-组件</title>
+	</head>
+	<body>
+		<div id="app">
+			<ol>
+				<test v-for="item in groceryList" v-bind:todo='item' v-bind:key='item.id'></test>
+			</ol>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			//1.定义一个组件 test-名字 后面为具体对象
+			//2.定义模块
+			Vue.component("test",{
+				props:['todo'],
+				template:'<li>{{todo.text}}</li>'
+			});
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					groceryList:[
+						{ id: 0,text: '蔬菜'},
+						{ id: 1,text: '麻辣王子'},
+						{ id: 2,text: '小浣熊'}
+					]
+				},
+			});
+		</script>
+	</body>
+</html>

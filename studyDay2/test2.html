@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test2-组件</title>
+	</head>
+	<body>
+		<div id="app">
+			<test v-for="item in items" v-bind:heihei="item"></test>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			//定义一个组件
+			Vue.component("test",{
+				props:['heihei'],
+				template:'<li>{{heihei}}</li>'
+			});
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					items:['java','linux','C']
+				},
+			});
+		</script>
+	</body>
+</html>

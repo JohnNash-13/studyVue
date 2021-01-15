@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test1</title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>输入框</h2>
+			<input v-model="message"/>
+			{{message}}
+			<br>
+			<h2>单选框</h2>
+			性别：
+			<input type="radio" name="sex" value="男" v-model="selectSex" />男
+			<input type="radio" name="sex" value="女" v-model="selectSex" />女
+			选中的性别：{{selectSex}}
+			<br>
+			<h2>下拉框</h2>
+			<select v-model="selected">
+				//如果v-model初始值没有匹配任何选项
+				//select会渲染成未选中状态
+				<option value ="" disabled="">--请选择--</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+			</select>
+			选中的为：{{selected}}
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					message:'hello',
+					selectSex:'',
+					selected:''
+				},
+			});
+		</script>
+	</body>
+</html>

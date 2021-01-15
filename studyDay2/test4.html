@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test4-Axios</title>
+	</head>
+	<!-- v-clock:解决闪烁问题-->
+	<style>
+		[v-clock]{
+			display: none;
+		}
+	</style>
+	<body>
+		<div id="app" v-cloak> 
+			<div>姓名:{{info.name}}</div>
+			<div>街道:{{info.address.street}}</div>
+			<a v-bind:href="info.url">clickMe</a>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data(){
+					//请求的返回参数格式与json字符串一致
+					//json文件注意别写错，不然渲染不上去
+					return{
+						info:{
+							name: null,
+							url: null,
+							page: null,
+							address: {
+								street: null,
+								city: null,
+								country: null
+							}
+						}
+					}
+				},
+				mounted(){//钩子函数 链式编程 ES6新特性
+					axios.get('data.json').then(response=>(this.info = response.data));
+				}
+			})
+		</script>
+	</body>
+</html>
