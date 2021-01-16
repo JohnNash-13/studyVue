@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test6-slot</title>
+	</head>
+	<body>
+		<div id="app"> 
+			<todo>
+				<todo-titile slot="todo-title" :title="title"></todo-titile>
+				<todo-items slot="todo-items" v-for="(item, index) in city"
+				 :item="item" :index="index" @remove="removeItem(index)"></todo-items>
+			</todo>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			Vue.component('todo', {
+				//这里美化了写法-即只要在对应换行处加上\
+				template: '<div>\
+								<slot name="todo-title"></slot>\
+								<ul>\
+									<slot name="todo-items"></slot>\
+								</ul>\
+						  </div>'
+			});
+			
+			Vue.component('todo-titile', {
+				props: ['title'],
+				template: '<div>{{title}}</div>'
+			});
+			
+			Vue.component('todo-items', {
+				props: ['item', 'index'],
+				template: '<li>{{item}}---{{index}} <button @click="remove">删除</button></li>',
+				methods: {
+					remove: function(index) {
+						this.$emit('remove', index);
+					}
+				}
+			});
+			
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					title: '浙江',
+					city: ['杭州', '临海', '乌镇']
+				},
+				methods:{
+					removeItem: function(index) {
+						console.log('删除了' + this.city[index])
+						this.city.splice(index, 1)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
