@@ -13,13 +13,13 @@
   export default {
     props: ['id'],
     name: 'UserProfile',
-    beforeRouteEnter:(to, from, next)=> {
+    beforeRouteEnter: (to, from, next) => {
       console.log("进入路由之前");
-      next(vm =>{
+      next(vm => {
         vm.getData();
       });
     },
-    beforeRouteLeave:(to, from, next)=> {
+    beforeRouteLeave: (to, from, next) => {
       console.log("进入路由之后");
       next();
     },
@@ -28,9 +28,9 @@
         this.axios({
           method: 'get',
           url: 'http://localhost:8080/static/mock/data.json'
-        }).then(function (response) {
+        }).then(function(response) {
           console.log(response);
-        }).catch(function (error) {
+        }).catch(function(error) {
           console.log(error)
         })
       }
