@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>class与style绑定之对象语法</title>
+	</head>
+	<body>
+
+		<div id="static" class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }">
+			{{text}}
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			var vm = new Vue({
+				el: '#static',
+				data: {
+					isActive: true,
+					hasError: true,
+					text: 'ddasdasdsad'
+				}
+			})
+		</script>
+	</body>
+
+</html>
